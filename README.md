@@ -3,8 +3,8 @@ csiphash.py
 
 [SipHash][] is a hash function and message authentication code that is secure,
 fast and simple. It accepts a 128-bit secret key and a variable-length message,
-and returns a 64-bit hash. It performs better than most cryptographic hash
-function-based MACs (especially for short inputs), and offers much better
+and returns a 64- or 128-bit hash. It performs better than most cryptographic
+hash function-based MACs (especially for short inputs), and offers much better
 security than non-cryptographic hash functions, providing resistance against
 hash-flooding DoS attacks. As a result, it is now used as the hash function of
 choice for hash tables in Python, Ruby, Rust and Redis.
@@ -60,6 +60,12 @@ If you want digests in hexadecimal, use `.encode('hex')`:
 'f1473495a5aac262'
 ```
 
+If you want 128-bit output, use ``output_bytes=16``::
+
+```pycon
+>>> siphash24(b'\x00' * 16, b'hello, world!\n', output_bytes=16)
+'\x8a\x03uf\x0b\x02\x06=\xfdI\x0fs\xb1\x14a&'
+```
 
 License
 -------
